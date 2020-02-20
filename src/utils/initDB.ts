@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const uriByEnv = {
   test: 'mongodb://localhost:27017/forumTest',
-  local: process.env.MONGODB_URI
+  local: process.env.MONGODB_URI || 'mongodb://localhost:27017/forum'
 };
 
 const { ENV } = process.env;
