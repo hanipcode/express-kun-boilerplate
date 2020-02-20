@@ -20,7 +20,7 @@ describe('POST Controller', () => {
     jest.resetAllMocks();
     req = mockRequest();
     res = mockResponse();
-    res.locals.decoded = testConstants.userDocument;
+    res.locals.decoded.data = testConstants.userDocument;
     const userSaveSpy = jest.fn();
     const postPushSpy = jest.fn();
     const userDocSpy = {
@@ -52,7 +52,9 @@ describe('POST Controller', () => {
       const populateFn = jest.fn();
       (Post.find as jest.Mock).mockImplementation(() => {
         return {
-          populate: populateFn.mockImplementation(() => resBody.data)
+          sort: () => ({
+            populate: populateFn.mockImplementation(() => resBody.data)
+          })
         };
       });
       await postController.getAll(req, res);
@@ -81,7 +83,7 @@ describe('POST Controller', () => {
     });
 
     it('call Post.create with post content', async () => {
-      res.locals.decoded = testConstants.userDocument;
+      res.locals.decoded.data = testConstants.userDocument;
       const content = 'menjelang pagiku';
       req.body = {
         content
@@ -118,7 +120,7 @@ describe('POST Controller', () => {
     });
 
     it('assign the newly created post to user', async () => {
-      res.locals.decoded = testConstants.userDocument;
+      res.locals.decoded.data = testConstants.userDocument;
       const content = 'menjelang pagiku';
       req.body = {
         content
@@ -165,7 +167,7 @@ describe('POST Controller', () => {
   describe('Commenting', () => {
     describe('Negative Test', () => {
       it('error on empty message', async () => {
-        res.locals.decoded = testConstants.userDocument;
+        res.locals.decoded.data = testConstants.userDocument;
 
         req.body = {};
 
@@ -178,7 +180,7 @@ describe('POST Controller', () => {
       });
 
       it('error if no postId in the params', async () => {
-        res.locals.decoded = testConstants.userDocument;
+        res.locals.decoded.data = testConstants.userDocument;
 
         req.params = {};
 
@@ -223,7 +225,7 @@ describe('POST Controller', () => {
         });
       });
       it('call Comment.create with user id and message', async () => {
-        res.locals.decoded = testConstants.userDocument;
+        res.locals.decoded.data = testConstants.userDocument;
 
         req.params = {
           postId: '1231312'
@@ -237,12 +239,13 @@ describe('POST Controller', () => {
         expect(Comment.create).toBeCalled();
         expect(Comment.create).toBeCalledWith({
           user: testConstants.userDocument._id,
+          post: expect.any(String),
           message
         });
       });
 
       it('return response with newly created comment', async () => {
-        res.locals.decoded = testConstants.userDocument;
+        res.locals.decoded.data = testConstants.userDocument;
 
         req.body = {
           message
@@ -271,7 +274,7 @@ describe('POST Controller', () => {
         );
       });
       it('get the post object', async () => {
-        res.locals.decoded = testConstants.userDocument;
+        res.locals.decoded.data = testConstants.userDocument;
 
         req.body = {
           message
@@ -296,7 +299,7 @@ describe('POST Controller', () => {
         });
       });
       it('save the comment to the post object', async () => {
-        res.locals.decoded = testConstants.userDocument;
+        res.locals.decoded.data = testConstants.userDocument;
 
         req.body = {
           message
@@ -382,7 +385,7 @@ describe('POST Controller', () => {
     });
 
     it('call Comment.findOne with the commentId as params', async () => {
-      res.locals.decoded = testConstants.userDocument;
+      res.locals.decoded.data = testConstants.userDocument;
       req.params = {
         postId,
         commentId: '31123131'
@@ -410,7 +413,7 @@ describe('POST Controller', () => {
     });
 
     it('call comment.create with message and comment level greater than previous comment', async () => {
-      res.locals.decoded = testConstants.userDocument;
+      res.locals.decoded.data = testConstants.userDocument;
       req.params = {
         postId,
         commentId: '31123131'
@@ -434,13 +437,14 @@ describe('POST Controller', () => {
       expect(Comment.create).toBeCalled();
       expect(Comment.create).toBeCalledWith({
         user: testConstants.userDocument._id,
+        post: expect.any(String),
         message: req.body.message,
         level: 2
       });
     });
 
     it('error if comment not found', async () => {
-      res.locals.decoded = testConstants.userDocument;
+      res.locals.decoded.data = testConstants.userDocument;
       req.params = {
         postId,
         commentId: '31123131'
@@ -462,7 +466,7 @@ describe('POST Controller', () => {
     });
 
     it('call push and save on parent comments', async () => {
-      res.locals.decoded = testConstants.userDocument;
+      res.locals.decoded.data = testConstants.userDocument;
       req.params = {
         postId,
         commentId: '31123131'
@@ -492,7 +496,7 @@ describe('POST Controller', () => {
     });
 
     it('call res.json with created sub comment', async () => {
-      res.locals.decoded = testConstants.userDocument;
+      res.locals.decoded.data = testConstants.userDocument;
       req.params = {
         postId,
         commentId: '31123131'
@@ -533,7 +537,7 @@ describe('POST Controller', () => {
     });
 
     it('add comment to the post object', async () => {
-      res.locals.decoded = testConstants.userDocument;
+      res.locals.decoded.data = testConstants.userDocument;
       req.params = {
         postId,
         commentId: '31123131'

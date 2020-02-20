@@ -1,16 +1,13 @@
 import * as userController from './user.controller';
 import { Router, Request, Response, NextFunction } from 'express';
 import errorHandlerMiddleware from '../../middlewares/errorHandlerMiddleware';
+import { withErrorHandler } from 'express-kun';
 
 const userRouter = Router();
 
-userRouter.post('/', userController.createUser);
-userRouter.post('/login', userController.loginUser);
+const errorHandledRoute = withErrorHandler(userRouter, errorHandlerMiddleware);
 
-userRouter.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  res.json({
-    message: 'duar'
-  });
-});
+errorHandledRoute.post('/', userController.createUser);
+errorHandledRoute.post('/login', userController.loginUser);
 
 export default userRouter;

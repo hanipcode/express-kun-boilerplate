@@ -13,6 +13,7 @@ export function mockRequest() {
 export function mockResponse() {
   const res: any = {};
   res.locals = {};
+  res.locals.decoded = {};
   res.send = jest.fn().mockReturnValue(res);
   res.status = jest.fn().mockReturnValue(res);
   res.json = jest.fn().mockReturnValue(res);

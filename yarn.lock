@@ -1592,10 +1592,10 @@ expect@^25.1.0:
     jest-message-util "^25.1.0"
     jest-regex-util "^25.1.0"
 
-express-kun@1.0.10:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/express-kun/-/express-kun-1.0.10.tgz#978e22640b6016c8f97c166c490e88911472ebb3"
-  integrity sha512-a1mkbMEEb3tSoMFTnSoM2vtvjwvnOTe7M+mq4hWIAY44JrLMCpkKOVd99X43wbpW6iwNChTi+98/KUo9PYcQzw==
+express-kun@1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/express-kun/-/express-kun-1.0.11.tgz#02cc6f62178eb9600c85ce838177aa1302b39030"
+  integrity sha512-Lqaam18/340yNt/5/5LPiufAbxqaGpuWA5k2Vlxgz9pXA4iMGhxLoB6n8oUXwnjbbBqUWxRZg2jpOlQYiDsonw==
   dependencies:
     "@types/express" "^4.17.2"
     jsonwebtoken "^8.5.1"
