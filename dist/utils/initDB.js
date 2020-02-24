@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = __importDefault(require("mongoose"));
 var uriByEnv = {
-    test: 'mongodb://localhost:27017/forumTest',
-    local: process.env.MONGODB_URI || 'mongodb://localhost:27017/forum'
+    test: 'mongodb://localhost:27017/shellTest',
+    local: process.env.MONGODB_URI || 'mongodb://localhost:27017/shell'
 };
 var ENV = process.env.ENV;
 var uri = ENV === 'test' ? uriByEnv.test : uriByEnv.local;

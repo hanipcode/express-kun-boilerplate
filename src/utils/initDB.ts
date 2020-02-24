@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 const uriByEnv = {
-  test: 'mongodb://localhost:27017/forumTest',
-  local: process.env.MONGODB_URI || 'mongodb://localhost:27017/forum'
+  test: 'mongodb://localhost:27017/shellTest',
+  local: process.env.MONGODB_URI || 'mongodb://localhost:27017/shell'
 };
 
 const { ENV } = process.env;

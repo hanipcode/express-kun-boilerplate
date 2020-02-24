@@ -5,7 +5,10 @@ import swaggerUI from 'swagger-ui-express';
 const baseModulePath = './src/modules';
 const getPath = (path: string): string => `${baseModulePath}${path}`;
 
-const docsSources = [getPath('/user/user.routes.ts')];
+const docsSources = [
+  getPath('/user/user.routes.ts'),
+  getPath('/sample/sample.routes.ts')
+];
 
 export default function generateDoc(app: Application) {
   const swaggerOptions = {
@@ -33,7 +36,6 @@ export default function generateDoc(app: Application) {
     swaggerUI.serve,
     swaggerUI.setup(swaggerSpec, {
       // customJs: '/reload/reload.js',
-      explorer: true
     })
   );
 }

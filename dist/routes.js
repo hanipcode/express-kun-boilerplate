@@ -5,8 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var user_routes_1 = __importDefault(require("./modules/user/user.routes"));
+var sample_routes_1 = __importDefault(require("./modules/sample/sample.routes"));
 var apiRouter = express_1.Router();
 apiRouter.use('/users', user_routes_1.default);
+apiRouter.use('/samples', sample_routes_1.default);
 function useApiRouter(app) {
     app.use('/api/v1', apiRouter);
 }

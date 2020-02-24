@@ -1,4 +1,4 @@
 export default {
-  secretKey: 'keyR@h@sia',
+  secretKey: 'keyR@h@sia@nusanshell',
   salt: 10
 };

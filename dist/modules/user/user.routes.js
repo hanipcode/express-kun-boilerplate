@@ -29,10 +29,11 @@ var userRouter = createErrorHandledRouter_1.default();
  *         in: formData
  *         required: true
  *         type: string
- *         default: ha@kagvu.ma
+ *         default: hanif@mail.com
  *       - name: password
  *         description: User's Password.
  *         in: formData
+ *         format: password
  *         required: true
  *         type: string
  *       - name: name
@@ -66,9 +67,10 @@ userRouter.post('/', userController.createUser);
  *         in: formData
  *         required: true
  *         type: string
- *         default: ha@kagvu.ma
+ *         default: hanif@mail.com
  *       - name: password
  *         description: User's Password.
+ *         format: password
  *         in: formData
  *         required: true
  *         type: string
