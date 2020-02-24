@@ -2,20 +2,33 @@ import { Request, Response } from 'express';
 import * as yup from 'yup';
 import bcrypt from 'bcrypt';
 import validationWording from '../../constants/validationWording';
-import User from './user.model';
+import UserRepository from './user.repository';
 import jwt from 'jsonwebtoken';
 import NotFoundError from '../../interfaces/NotFoundError';
 import InvalidRequestError from '../../interfaces/InvalidRequestError';
-import { Document, MongooseDocument } from 'mongoose';
 import keys from '../../constants/keys';
-import { loginValidation, registerValidation } from './validations';
 
 export const createUser = async (req: Request, res: Response) => {
   const { body } = req;
-  const schema = registerValidation;
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .email(validationWording.invalid('email'))
+      .required(validationWording.required('email')),
+    password: yup
+      .string()
+      .min(8, validationWording.minLength(8))
+      .required(validationWording.required('password')),
+    name: yup.string().required(validationWording.required('name'))
+  });
   const validatedBody = schema.validateSync(body);
+  const userRepository = new UserRepository();
 
-  const user = await User.create(validatedBody);
+  const user = await userRepository.createUser({
+    email: validatedBody.email,
+    password: validatedBody.password,
+    name: validatedBody.name
+  });
 
   res.json({
     message: 'success creating user',
@@ -25,11 +38,18 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const loginUser = async (req: Request, res: Response) => {
   const { body } = req;
-  const schema = loginValidation;
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .email(validationWording.invalid('email'))
+      .required(validationWording.required('email')),
+    password: yup.string().required(validationWording.required('password'))
+  });
   const validatedBody = schema.validateSync(body);
-  const user = await User.findOne({
+  const userRepository = new UserRepository();
+  const user = await userRepository.findOneUserWithPassword({
     email: validatedBody.email
-  }).select('_id email name password');
+  });
   if (!user) {
     throw new NotFoundError(validationWording.notFound('user'), 'user');
   }

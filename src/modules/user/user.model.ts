@@ -6,13 +6,13 @@ function hashPassword(value: any) {
   return bcrypt.hashSync(value, keys.salt);
 }
 
-export interface IUserModel extends Document {
+export interface IUser {
   email: string;
   posts: any[];
   password: string;
   name: string;
-  _id: Types.ObjectId;
 }
+export interface IUserModel extends Document, IUser {}
 
 const UserSchema = new Schema({
   email: {
