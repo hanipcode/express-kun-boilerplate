@@ -22,7 +22,7 @@ export default function generateDoc(app: Application) {
         title: 'Sell Api Documentation',
         version: '1.0.0'
       },
-      basePath: '/api'
+      basePath: '/api/v1'
     },
     apis: docsSources
   };
