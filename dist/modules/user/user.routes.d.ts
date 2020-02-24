@@ -1,3 +1,3 @@
-import { Router } from 'express';
-declare const errorHandledRoute: Router;
-export default errorHandledRoute;
+/// <reference types="express" />
+declare const userRouter: import("express").Router;
+export default userRouter;

@@ -1,8 +1,8 @@
 Arguments: 
-  /Users/hanif/.nvm/versions/node/v10.16.0/bin/node /Users/hanif/.yarn/bin/yarn.js add @types/supertestd /Users/hanif/Projects/express-kun-example
+  /Users/hanif/.nvm/versions/node/v10.16.0/bin/node /Users/hanif/.yarn/bin/yarn.js add @types/swagger-jsdoc @tpyes/swagger-ui-express --dev
 
 PATH: 
-  /Users/hanif/.yarn/bin:/Users/hanif/.config/yarn/global/node_modules/.bin:/Users/Shared/DBngin/mysql/8.0.12/bin:/usr/local/php5/bin:/Users/hanif/.nvm/versions/node/v10.16.0/bin:/Users/hanif/.yarn/bin:/Users/hanif/.config/yarn/global/node_modules/.bin:/Users/Shared/DBngin/mysql/8.0.12/bin:/usr/local/php5/bin:/Users/hanif/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/hanif/DevApp/flutter/bin:/Users/hanif/Library/Android/sdk//tools:/Users/hanif/Library/Android/sdk//platform-tools:/Users/hanif/.pub-cache/bin:/Users/hanif/anaconda3/bin:/usr/local/opt/rabbitmq/sbin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/hanif/DevApp/flutter/bin:/Users/hanif/Library/Android/sdk//tools:/Users/hanif/Library/Android/sdk//platform-tools:/Users/hanif/.pub-cache/bin:/Users/hanif/anaconda3/bin:/usr/local/opt/rabbitmq/sbin
+  /Users/hanif/.yarn/bin:/Users/hanif/.config/yarn/global/node_modules/.bin:/Users/Shared/DBngin/mysql/8.0.12/bin:/usr/local/php5/bin:/Users/hanif/.nvm/versions/node/v10.16.0/bin:/Users/hanif/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/hanif/DevApp/flutter/bin:/Users/hanif/Library/Android/sdk//tools:/Users/hanif/Library/Android/sdk//platform-tools:/Users/hanif/.pub-cache/bin:/Users/hanif/anaconda3/bin:/usr/local/opt/rabbitmq/sbin
 
 Yarn version: 
   1.21.1
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.npmjs.com/@types%2fsupertestd: Not found
+  Error: https://registry.npmjs.com/@tpyes%2fswagger-ui-express: Not found
       at Request.params.callback [as _callback] (/Users/hanif/.yarn/lib/cli.js:66947:18)
       at Request.self.callback (/Users/hanif/.yarn/lib/cli.js:140665:22)
       at Request.emit (events.js:198:13)
@@ -33,7 +33,8 @@ npm manifest:
     "description": "",
     "main": "index.js",
     "scripts": {
-      "test": "jest",
+      "test": "ENV=test jest",
+      "test:watch": "ENV=test DEBUGGER=true jest --watch",
       "dev": "nodemon",
       "build:watch": "tsc --watch",
       "build": "tsc"
@@ -47,15 +48,19 @@ npm manifest:
       "@types/mongoose": "^5.7.1",
       "@types/supertest": "^2.0.8",
       "bcrypt": "^3.0.8",
+      "cors": "^2.8.5",
       "express": "^4.17.1",
-      "express-kun": "^1.0.4",
+      "express-kun": "^1.0.14",
       "jest": "^25.1.0",
       "jsonwebtoken": "^8.5.1",
       "mongoose": "^5.9.0",
+      "swagger-jsdoc": "^3.5.0",
+      "swagger-ui-express": "^4.1.3",
       "ts-jest": "^25.2.0",
       "yup": "^0.28.1"
     },
     "devDependencies": {
+      "@types/cors": "^2.8.6",
       "@types/express": "^4.17.2",
       "@types/yup": "^0.26.31",
       "nodemon": "^2.0.2",
@@ -479,6 +484,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@types/cookiejar/-/cookiejar-2.1.1.tgz#90b68446364baf9efd8e8349bb36bd3852b75b80"
     integrity sha512-aRnpPa7ysx3aNW60hTiCtLHlQaIFsXFCgQlpakNgDNVFzbtusSY8PwjAQgRWfSk0ekNoBjO51eQRB6upA9uuyw==
   
+  "@types/cors@^2.8.6":
+    version "2.8.6"
+    resolved "https://registry.yarnpkg.com/@types/cors/-/cors-2.8.6.tgz#cfaab33c49c15b1ded32f235111ce9123009bd02"
+    integrity sha512-invOmosX0DqbpA+cE2yoHGUlF/blyf7nB0OGYBBiH27crcVm5NmFaZkLP4Ta1hGaesckCi5lVLlydNJCxkTOSg==
+    dependencies:
+      "@types/express" "*"
+  
   "@types/express-serve-static-core@*":
     version "4.17.2"
     resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.2.tgz#f6f41fa35d42e79dbf6610eccbb2637e6008a0cf"
@@ -487,7 +499,7 @@ Lockfile:
       "@types/node" "*"
       "@types/range-parser" "*"
   
-  "@types/express@^4.17.2":
+  "@types/express@*", "@types/express@^4.17.2":
     version "4.17.2"
     resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.2.tgz#a0fb7a23d8855bac31bc01d5a58cadd9b2173e6c"
     integrity sha512-5mHFNyavtLoJmnusB8OKJ5bshSzw+qkMIBAobLrIM48HJvunFva9mOa6aBwh64lBFyNwBbs0xiEFuj4eU/NjCA==
@@ -1027,6 +1039,11 @@ Lockfile:
       union-value "^1.0.0"
       unset-value "^1.0.0"
   
+  call-me-maybe@^1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/call-me-maybe/-/call-me-maybe-1.0.1.tgz#26d208ea89e37b5cbde60250a15f031c16a4d66b"
+    integrity sha1-JtII6onje1y95gJQoV8DHBak1ms=
+  
   callsites@^3.0.0:
     version "3.1.0"
     resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
@@ -1184,6 +1201,16 @@ Lockfile:
     dependencies:
       delayed-stream "~1.0.0"
   
+  commander@4.0.1:
+    version "4.0.1"
+    resolved "https://registry.yarnpkg.com/commander/-/commander-4.0.1.tgz#b67622721785993182e807f4883633e6401ba53c"
+    integrity sha512-IPF4ouhCP+qdlcmCedhxX4xiGBPyigb8v5NeUp+0LyhwLgxMqyp3S0vl7TAPfS/hiP7FC3caI/PB9lTmP8r1NA==
+  
+  commander@^2.7.1:
+    version "2.20.3"
+    resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
+    integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
+  
   component-emitter@^1.2.0, component-emitter@^1.2.1:
     version "1.3.0"
     resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.3.0.tgz#16e4070fba8ae29b679f2215853ee181ab2eabc0"
@@ -1254,6 +1281,14 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
     integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+  
+  cors@^2.8.5:
+    version "2.8.5"
+    resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.5.tgz#eac11da51592dd86b9f06f6e7ac293b3df875d29"
+    integrity sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
+    dependencies:
+      object-assign "^4"
+      vary "^1"
   
   create-error-class@^3.0.0:
     version "3.0.2"
@@ -1445,6 +1480,13 @@ Lockfile:
     version "25.1.0"
     resolved "https://registry.yarnpkg.com/diff-sequences/-/diff-sequences-25.1.0.tgz#fd29a46f1c913fd66c22645dc75bffbe43051f32"
     integrity sha512-nFIfVk5B/NStCsJ+zaPO4vYuLjlzQ6uFvPxzYyHlejNZ/UGa7G/n7peOXVrVNvRuyfstt+mZQYGpjxg9Z6N8Kw==
+  
+  doctrine@3.0.0:
+    version "3.0.0"
+    resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-3.0.0.tgz#addebead72a6574db783639dc87a121773973961"
+    integrity sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==
+    dependencies:
+      esutils "^2.0.2"
   
   domexception@^1.0.1:
     version "1.0.1"
@@ -1647,12 +1689,14 @@ Lockfile:
       jest-message-util "^25.1.0"
       jest-regex-util "^25.1.0"
   
-  express-kun@^1.0.4:
-    version "1.0.4"
-    resolved "https://registry.yarnpkg.com/express-kun/-/express-kun-1.0.4.tgz#c4ad5291d0f419d50de68a03c7d2496a026b3690"
-    integrity sha512-cPtysz3vT/pS5mtAqu/T62NJ5G2sD374Qv/yb7x7AfW8lJvi7DgoExpv0R8mlQBlEvnv5JywAkFx77MfqvBRvA==
+  express-kun@^1.0.14:
+    version "1.0.14"
+    resolved "https://registry.yarnpkg.com/express-kun/-/express-kun-1.0.14.tgz#699d7044af48b2851439d44a8bae2bbe6ef9930b"
+    integrity sha512-xgY7SCx168QHnr5KQL1Vmc3O76QYhGYtDcokQB+3O146Ul6i3qrWxM9TXdSiBpMvtsyueVszD5D27hK4QigbYQ==
     dependencies:
       "@types/express" "^4.17.2"
+      express "^4.17.1"
+      jsonwebtoken "^8.5.1"
   
   express@^4.17.1:
     version "4.17.1"
@@ -1933,7 +1977,7 @@ Lockfile:
     dependencies:
       is-glob "^4.0.1"
   
-  glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4:
+  glob@7.1.6, glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4:
     version "7.1.6"
     resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
     integrity sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
@@ -2818,7 +2862,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
     integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
   
-  js-yaml@^3.13.1:
+  js-yaml@3.13.1, js-yaml@^3.13.1:
     version "3.13.1"
     resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.13.1.tgz#aff151b30bfdfa8e49e05da22e7415e9dfa37847"
     integrity sha512-YfbcO7jXDdyj0DGxYVSlSeQNHbD7XPWvrVWeVUujrQEoZzWJIRrCPoyk6kL6IAjAG2IolMK4T0hNUe0HOUs5Jw==
@@ -2867,6 +2911,15 @@ Lockfile:
     version "2.5.2"
     resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-2.5.2.tgz#80564d2e483dacf6e8ef209650a67df3f0c283a4"
     integrity sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==
+  
+  json-schema-ref-parser@^7.1.1:
+    version "7.1.3"
+    resolved "https://registry.yarnpkg.com/json-schema-ref-parser/-/json-schema-ref-parser-7.1.3.tgz#21468cd180b2f1939ce93fe291f743b441e97d49"
+    integrity sha512-/Lmyl0PW27dOmCO03PI339+1gs4Z2PlqIyUgzIOtoRp08zkkMCB30TRbdppbPO7WWzZX0uT98HqkDiZSujkmbA==
+    dependencies:
+      call-me-maybe "^1.0.1"
+      js-yaml "^3.13.1"
+      ono "^6.0.0"
   
   json-schema-traverse@^0.4.1:
     version "0.4.1"
@@ -2999,6 +3052,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
     integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
   
+  lodash.get@^4.4.2:
+    version "4.4.2"
+    resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+    integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
+  
   lodash.includes@^4.3.0:
     version "4.3.0"
     resolved "https://registry.yarnpkg.com/lodash.includes/-/lodash.includes-4.3.0.tgz#60bb98a87cb923c68ca1e51325483314849f553f"
@@ -3008,6 +3066,11 @@ Lockfile:
     version "3.0.3"
     resolved "https://registry.yarnpkg.com/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz#6c2e171db2a257cd96802fd43b01b20d5f5870f6"
     integrity sha1-bC4XHbKiV82WgC/UOwGyDV9YcPY=
+  
+  lodash.isequal@^4.5.0:
+    version "4.5.0"
+    resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+    integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
   
   lodash.isinteger@^4.0.4:
     version "4.0.4"
@@ -3480,7 +3543,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
     integrity sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
   
-  object-assign@^4.1.0:
+  object-assign@^4, object-assign@^4.1.0:
     version "4.1.1"
     resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
     integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
@@ -3556,6 +3619,26 @@ Lockfile:
     integrity sha512-5NcSkPHhwTVFIQN+TUqXoS5+dlElHXdpAWu9I0HP20YOtIi+aZ0Ct82jdlILDxjLEAWwvm+qj1m6aEtsDVmm6Q==
     dependencies:
       mimic-fn "^2.1.0"
+  
+  ono@^5.1.0:
+    version "5.1.0"
+    resolved "https://registry.yarnpkg.com/ono/-/ono-5.1.0.tgz#8cafa7e56afa2211ad63dd2eb798427e64f1a070"
+    integrity sha512-GgqRIUWErLX4l9Up0khRtbrlH8Fyj59A0nKv8V6pWEto38aUgnOGOOF7UmgFFLzFnDSc8REzaTXOc0hqEe7yIw==
+  
+  ono@^6.0.0:
+    version "6.0.1"
+    resolved "https://registry.yarnpkg.com/ono/-/ono-6.0.1.tgz#1bc14ffb8af1e5db3f7397f75b88e4a2d64bbd71"
+    integrity sha512-5rdYW/106kHqLeG22GE2MHKq+FlsxMERZev9DCzQX1zwkxnFwBivSn5i17a5O/rDmOJOdf4Wyt80UZljzx9+DA==
+  
+  openapi-schemas@^1.0.2:
+    version "1.0.3"
+    resolved "https://registry.yarnpkg.com/openapi-schemas/-/openapi-schemas-1.0.3.tgz#0fa2f19e44ce8a1cdab9c9f616df4babe1aa026b"
+    integrity sha512-KtMWcK2VtOS+nD8RKSIyScJsj8JrmVWcIX7Kjx4xEHijFYuvMTDON8WfeKOgeSb4uNG6UsqLj5Na7nKbSav9RQ==
+  
+  openapi-types@^1.3.5:
+    version "1.3.5"
+    resolved "https://registry.yarnpkg.com/openapi-types/-/openapi-types-1.3.5.tgz#6718cfbc857fe6c6f1471f65b32bdebb9c10ce40"
+    integrity sha512-11oi4zYorsgvg5yBarZplAqbpev5HkuVNPlZaPTknPDzAynq+lnJdXAmruGWP0s+dNYZS7bjM+xrTpJw7184Fg==
   
   optionator@^0.8.1:
     version "0.8.3"
@@ -4490,6 +4573,47 @@ Lockfile:
       has-flag "^4.0.0"
       supports-color "^7.0.0"
   
+  swagger-jsdoc@^3.5.0:
+    version "3.5.0"
+    resolved "https://registry.yarnpkg.com/swagger-jsdoc/-/swagger-jsdoc-3.5.0.tgz#285ef707a34f79a90b3c14faf3c14eb9da29d4c7"
+    integrity sha512-TSmCgPodvVGGIXEU+zDp03Gau4pZxgVXiZMIjOgBQHEsRzPLoo2XvF9oQ8Nf1Wf29qsXebLb6qqlo6CIwCQ0Cw==
+    dependencies:
+      commander "4.0.1"
+      doctrine "3.0.0"
+      glob "7.1.6"
+      js-yaml "3.13.1"
+      swagger-parser "8.0.3"
+  
+  swagger-methods@^2.0.1:
+    version "2.0.2"
+    resolved "https://registry.yarnpkg.com/swagger-methods/-/swagger-methods-2.0.2.tgz#5891d5536e54d5ba8e7ae1007acc9170f41c9590"
+    integrity sha512-/RNqvBZkH8+3S/FqBPejHxJxZenaYq3MrpeXnzi06aDIS39Mqf5YCUNb/ZBjsvFFt8h9FxfKs8EXPtcYdfLiRg==
+  
+  swagger-parser@8.0.3:
+    version "8.0.3"
+    resolved "https://registry.yarnpkg.com/swagger-parser/-/swagger-parser-8.0.3.tgz#2f577527c5307d94050785cfb8939aaefe3575d8"
+    integrity sha512-y2gw+rTjn7Z9J+J1qwbBm0UL93k/VREDCveKBK6iGjf7KXC6QGshbnpEmeHL0ZkCgmIghsXzpNzPSbBH91BAEQ==
+    dependencies:
+      call-me-maybe "^1.0.1"
+      json-schema-ref-parser "^7.1.1"
+      ono "^5.1.0"
+      openapi-schemas "^1.0.2"
+      openapi-types "^1.3.5"
+      swagger-methods "^2.0.1"
+      z-schema "^4.1.1"
+  
+  swagger-ui-dist@^3.18.1:
+    version "3.25.0"
+    resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-3.25.0.tgz#90279cdcc56e591fcfbe7b5240a9d653b989336d"
+    integrity sha512-vwvJPPbdooTvDwLGzjIXinOXizDJJ6U1hxnJL3y6U3aL1d2MSXDmKg2139XaLBhsVZdnQJV2bOkX4reB+RXamg==
+  
+  swagger-ui-express@^4.1.3:
+    version "4.1.3"
+    resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-4.1.3.tgz#90ba85e03f02e2e240e04fd62f4c62fdf358f4d5"
+    integrity sha512-f8SEn4YWkKh/HGK0ZjuA2VqA78i1aY6OIa5cqYNgOkBobfHV6Mz4dphQW/us8HYhEFfbENq329PyfIonWfzFrw==
+    dependencies:
+      swagger-ui-dist "^3.18.1"
+  
   symbol-tree@^3.2.2:
     version "3.2.4"
     resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
@@ -4811,7 +4935,12 @@ Lockfile:
       convert-source-map "^1.6.0"
       source-map "^0.7.3"
   
-  vary@~1.1.2:
+  validator@^11.0.0:
+    version "11.1.0"
+    resolved "https://registry.yarnpkg.com/validator/-/validator-11.1.0.tgz#ac18cac42e0aa5902b603d7a5d9b7827e2346ac4"
+    integrity sha512-qiQ5ktdO7CD6C/5/mYV4jku/7qnqzjrxb3C/Q5wR3vGGinHTgJZN/TdFT3ZX4vXhX2R1PXx42fB1cn5W+uJ4lg==
+  
+  vary@^1, vary@~1.1.2:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
     integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
@@ -5024,3 +5153,14 @@ Lockfile:
       property-expr "^1.5.0"
       synchronous-promise "^2.0.6"
       toposort "^2.0.2"
+  
+  z-schema@^4.1.1:
+    version "4.2.2"
+    resolved "https://registry.yarnpkg.com/z-schema/-/z-schema-4.2.2.tgz#43fa2709ae5016885db50e1ce31b254b72c0886c"
+    integrity sha512-7bGR7LohxSdlK1EOdvA/OHksvKGE4jTLSjd8dBj9YKT0S43N9pdMZ0Z7GZt9mHrBFhbNTRh3Ky6Eu2MHsPJe8g==
+    dependencies:
+      lodash.get "^4.4.2"
+      lodash.isequal "^4.5.0"
+      validator "^11.0.0"
+    optionalDependencies:
+      commander "^2.7.1"

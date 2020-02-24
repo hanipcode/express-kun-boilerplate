@@ -7,6 +7,8 @@ import jwt from 'jsonwebtoken';
 import NotFoundError from '../../interfaces/NotFoundError';
 import InvalidRequestError from '../../interfaces/InvalidRequestError';
 import keys from '../../constants/keys';
+import getAllRoleKey from './helpers/getAllRoleKey';
+import { Role } from './user.model';
 
 export const createUser = async (req: Request, res: Response) => {
   const { body } = req;
@@ -19,14 +21,21 @@ export const createUser = async (req: Request, res: Response) => {
       .string()
       .min(8, validationWording.minLength(8))
       .required(validationWording.required('password')),
-    name: yup.string().required(validationWording.required('name'))
+    name: yup.string().required(validationWording.required('name')),
+    role: yup
+      .mixed<keyof typeof Role>()
+      .oneOf(
+        getAllRoleKey(),
+        validationWording.oneOf('role', ...getAllRoleKey())
+      )
   });
   const validatedBody = schema.validateSync(body);
   const userRepository = new UserRepository();
 
-  const user = await userRepository.createUser({
+  const user = await userRepository.create({
     email: validatedBody.email,
     password: validatedBody.password,
+    role: Role[validatedBody.role],
     name: validatedBody.name
   });
 

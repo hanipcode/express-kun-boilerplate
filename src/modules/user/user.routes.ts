@@ -1,13 +1,35 @@
 import * as userController from './user.controller';
-import { Router, Request, Response, NextFunction } from 'express';
-import errorHandlerMiddleware from '../../middlewares/errorHandlerMiddleware';
-import { withErrorHandler } from 'express-kun';
+import createErrorHandledRouter from '../../routers/createErrorHandledRouter';
 
-const userRouter = Router();
+const userRouter = createErrorHandledRouter();
 
-const errorHandledRoute = withErrorHandler(userRouter, errorHandlerMiddleware);
+userRouter.post('/', userController.createUser);
+/**
+ * @swagger
+ *
+ * /users/login:
+ *   post:
+ *     tags: ['User']
+ *     summary: User Login
+ *     description: User login
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: email
+ *         description: User's Email
+ *         in: formData
+ *         required: true
+ *         type: string
+ *         default: ha@kagvu.ma
+ *       - name: password
+ *         description: User's Password.
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: login
+ */
+userRouter.post('/login', userController.loginUser);
 
-errorHandledRoute.post('/', userController.createUser);
-errorHandledRoute.post('/login', userController.loginUser);
-
-export default errorHandledRoute;
+export default userRouter;

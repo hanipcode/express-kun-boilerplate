@@ -6,13 +6,22 @@ function hashPassword(value: any) {
   return bcrypt.hashSync(value, keys.salt);
 }
 
-export interface IUser {
+export enum Role {
+  distributor = 'Distributor',
+  receiver = 'Receiver',
+  admin = 'Admin',
+  lab = 'Lab',
+  techincal = 'Technical'
+}
+
+export interface IUserBase {
   email: string;
-  posts: any[];
   password: string;
   name: string;
+  role: Role;
 }
-export interface IUserModel extends Document, IUser {}
+
+export interface IUserModel extends Document, IUserBase {}
 
 const UserSchema = new Schema({
   email: {
@@ -20,13 +29,16 @@ const UserSchema = new Schema({
     required: true,
     unique: true
   },
+  role: {
+    type: String,
+    required: true
+  },
   password: {
     type: String,
     required: true,
     select: false,
     set: hashPassword
   },
-  posts: [{ type: Types.ObjectId, ref: 'Post' }],
   name: {
     required: true,
     type: String

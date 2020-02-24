@@ -9,11 +9,23 @@ var keys_1 = __importDefault(require("../../constants/keys"));
 function hashPassword(value) {
     return bcrypt_1.default.hashSync(value, keys_1.default.salt);
 }
+var Role;
+(function (Role) {
+    Role["distributor"] = "Distributor";
+    Role["receiver"] = "Receiver";
+    Role["admin"] = "Admin";
+    Role["lab"] = "Lab";
+    Role["techincal"] = "Technical";
+})(Role = exports.Role || (exports.Role = {}));
 var UserSchema = new mongoose_1.Schema({
     email: {
         type: String,
         required: true,
         unique: true
+    },
+    role: {
+        type: String,
+        required: true
     },
     password: {
         type: String,
@@ -21,7 +33,6 @@ var UserSchema = new mongoose_1.Schema({
         select: false,
         set: hashPassword
     },
-    posts: [{ type: mongoose_1.Types.ObjectId, ref: 'Post' }],
     name: {
         required: true,
         type: String

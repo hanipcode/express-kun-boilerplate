@@ -1,10 +1,18 @@
-import { Document, Types } from 'mongoose';
-export interface IUserModel extends Document {
+import { Document } from 'mongoose';
+export declare enum Role {
+    distributor = "Distributor",
+    receiver = "Receiver",
+    admin = "Admin",
+    lab = "Lab",
+    techincal = "Technical"
+}
+export interface IUserBase {
     email: string;
-    posts: any[];
     password: string;
     name: string;
-    _id: Types.ObjectId;
+    role: Role;
+}
+export interface IUserModel extends Document, IUserBase {
 }
 declare const User: import("mongoose").Model<IUserModel, {}>;
 export default User;

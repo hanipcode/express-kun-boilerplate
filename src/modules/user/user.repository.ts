@@ -1,23 +1,18 @@
-import User, { IUserModel, IUser } from './user.model';
+import User, { IUserModel, IUserBase } from './user.model';
 import mongoose from 'mongoose';
+import BaseRepository from '../../repository/baseRepository';
 
-export default class UserRepository {
+type CreateUserParam = IUserBase;
+
+export default class UserRepository extends BaseRepository<
+  IUserModel,
+  CreateUserParam
+> {
   _userModel: mongoose.Model<IUserModel>;
 
   constructor() {
+    super(User);
     this._userModel = User;
-  }
-
-  async createUser(param: Partial<IUser>) {
-    return this._userModel.create(param);
-  }
-
-  async findAllUser() {
-    return this._userModel.find({});
-  }
-
-  async findOneUser(condition: any) {
-    return this._userModel.findOne(condition);
   }
 
   async findOneUserWithPassword(condition: any) {
