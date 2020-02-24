@@ -10,4 +10,4 @@ const errorHandledRoute = withErrorHandler(userRouter, errorHandlerMiddleware);
 errorHandledRoute.post('/', userController.createUser);
 errorHandledRoute.post('/login', userController.loginUser);
 
-export default userRouter;
+export default errorHandledRoute;

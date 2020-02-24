@@ -18,7 +18,7 @@ var withAuthMiddleware_1 = __importDefault(require("../../routers/withAuthMiddle
 var router = express_1.Router();
 var errorHandledRouter = express_kun_1.withErrorHandler(router, errorHandlerMiddleware_1.default);
 var protectedRouter = withAuthMiddleware_1.default(errorHandledRouter);
-protectedRouter.get('/', postController.getAll);
+errorHandledRouter.get('/', postController.getAll);
 protectedRouter.post('/', postController.create);
 protectedRouter.get('/:postId', postController.getPost);
 protectedRouter.get('/:postId/comments', postController.getComments);

@@ -18,5 +18,5 @@ var userRouter = express_1.Router();
 var errorHandledRoute = express_kun_1.withErrorHandler(userRouter, errorHandlerMiddleware_1.default);
 errorHandledRoute.post('/', userController.createUser);
 errorHandledRoute.post('/login', userController.loginUser);
-exports.default = userRouter;
+exports.default = errorHandledRoute;
 //# sourceMappingURL=user.routes.js.map

@@ -75,11 +75,7 @@ exports.getAll = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                     .populate('comments')];
             case 1:
                 allPost = _a.sent();
-                res.json({
-                    message: 'Success get all post',
-                    data: allPost
-                });
-                return [2 /*return*/];
+                throw new NotFoundError_1.default('memang', 'mamang');
         }
     });
 }); };

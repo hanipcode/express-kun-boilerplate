@@ -1,2 +1,3 @@
-declare const userRouter: import("express-serve-static-core").Router;
-export default userRouter;
+import { Router } from 'express';
+declare const errorHandledRoute: Router;
+export default errorHandledRoute;
