@@ -35,12 +35,12 @@ var userRouter = createErrorHandledRouter_1.default();
  *         in: formData
  *         required: true
  *         type: string
- *        - name: name
+ *       - name: name
  *         description: User's Name
  *         in: formData
  *         required: true
  *         type: string
- *         - name: role
+ *       - name: role
  *         description: User's role
  *         in: formData
  *         required: true
