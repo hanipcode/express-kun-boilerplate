@@ -1,4 +1,4 @@
-import { Application } from 'express';
+import { Application, Request, Response } from 'express';
 import swaggerJSDOC from 'swagger-jsdoc';
 import swaggerUI from 'swagger-ui-express';
 
@@ -7,7 +7,9 @@ const getPath = (path: string): string => `${baseModulePath}${path}`;
 
 const docsSources = [
   getPath('/user/user.routes.ts'),
-  getPath('/sample/sample.routes.ts')
+  getPath('/sample/sample.routes.ts'),
+  getPath('/shipment/shipment.routes.ts'),
+  getPath('/status_log/sample_status_log.routes.ts')
 ];
 
 export default function generateDoc(app: Application) {
@@ -31,6 +33,9 @@ export default function generateDoc(app: Application) {
   };
 
   const swaggerSpec = swaggerJSDOC(swaggerOptions);
+  app.get('/api-docs.json', (req: Request, res: Response) => {
+    res.send(swaggerSpec);
+  });
   app.use(
     '/api-docs',
     swaggerUI.serve,

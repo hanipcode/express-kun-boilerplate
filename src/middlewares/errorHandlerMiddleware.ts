@@ -3,6 +3,9 @@ import NotFoundError from '../interfaces/NotFoundError';
 import InvalidRequestError from '../interfaces/InvalidRequestError';
 import { ValidationError } from 'yup';
 import validationWording from '../constants/validationWording';
+import TrackPackageError from '../interfaces/TrackPackageError';
+import AccessError from '../interfaces/AccessError';
+import ExtensionError from '../interfaces/ExtensionError';
 
 export default function errorHandlerMiddleware(
   err: any,
@@ -10,6 +13,10 @@ export default function errorHandlerMiddleware(
   res: Response,
   next: NextFunction
 ) {
+  if (!err) {
+    next();
+    return;
+  }
   if (err instanceof NotFoundError) {
     res.status(404).json({
       message: err.message,
@@ -27,6 +34,30 @@ export default function errorHandlerMiddleware(
   if (err instanceof ValidationError) {
     res.status(400).json({
       message: err.message,
+      error: true
+    });
+    return;
+  }
+
+  if (err instanceof ExtensionError) {
+    res.status(400).json({
+      message: err.message,
+      error: true
+    });
+    return;
+  }
+
+  if (err instanceof AccessError) {
+    res.status(401).json({
+      message: err.message,
+      error: true
+    });
+    return;
+  }
+  if (err instanceof TrackPackageError) {
+    res.status(500).json({
+      message: err.message,
+      stack: err.stack,
       error: true
     });
     return;
