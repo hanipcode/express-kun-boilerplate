@@ -1,1 +1,0 @@
-{"version":3,"file":"createErrorHandledRouter.js","sourceRoot":"","sources":["../../src/routers/createErrorHandledRouter.ts"],"names":[],"mappings":";;;;;AAAA,mCAAiC;AACjC,2CAA+C;AAC/C,iGAA2E;AAE3E,SAAwB,wBAAwB;IAC9C,IAAM,MAAM,GAAG,gBAAM,EAAE,CAAC;IACxB,OAAO,8BAAgB,CAAC,MAAM,EAAE,gCAAsB,CAAC,CAAC;AAC1D,CAAC;AAHD,2CAGC"}
