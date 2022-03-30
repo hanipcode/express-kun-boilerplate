@@ -11,7 +11,7 @@ export enum Role {
   receiver = 'Receiver',
   admin = 'Admin',
   lab = 'Lab',
-  techincal = 'Technical'
+  techincal = 'Technical',
 }
 
 export interface IUserBase {
@@ -27,22 +27,22 @@ const UserSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   role: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
     required: true,
     select: false,
-    set: hashPassword
+    set: hashPassword,
   },
   name: {
     required: true,
-    type: String
-  }
+    type: String,
+  },
 });
 
 const User = model<IUserModel>('User', UserSchema);

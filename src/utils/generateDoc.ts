@@ -5,12 +5,7 @@ import swaggerUI from 'swagger-ui-express';
 const baseModulePath = './src/modules';
 const getPath = (path: string): string => `${baseModulePath}${path}`;
 
-const docsSources = [
-  getPath('/user/user.routes.ts'),
-  getPath('/sample/sample.routes.ts'),
-  getPath('/shipment/shipment.routes.ts'),
-  getPath('/status_log/sample_status_log.routes.ts')
-];
+const docsSources = [getPath('/user/user.routes.ts')];
 
 export default function generateDoc(app: Application) {
   const swaggerOptions = {
@@ -19,17 +14,17 @@ export default function generateDoc(app: Application) {
         jwt: {
           type: 'apiKey',
           in: 'header',
-          name: 'Authorization'
-        }
+          name: 'Authorization',
+        },
       },
       components: {},
       info: {
-        title: 'Sell Api Documentation',
-        version: '1.0.0'
+        title: 'Express Kun Boilerplate',
+        version: '1.0.0',
       },
-      basePath: '/api/v1'
+      basePath: '/api/v1',
     },
-    apis: docsSources
+    apis: docsSources,
   };
 
   const swaggerSpec = swaggerJSDOC(swaggerOptions);

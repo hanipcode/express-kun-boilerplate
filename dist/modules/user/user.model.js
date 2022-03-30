@@ -21,22 +21,22 @@ var UserSchema = new mongoose_1.Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     role: {
         type: String,
-        required: true
+        required: true,
     },
     password: {
         type: String,
         required: true,
         select: false,
-        set: hashPassword
+        set: hashPassword,
     },
     name: {
         required: true,
-        type: String
-    }
+        type: String,
+    },
 });
 var User = mongoose_1.model('User', UserSchema);
 exports.default = User;

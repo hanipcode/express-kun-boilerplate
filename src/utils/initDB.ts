@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 const uriByEnv = {
-  test: 'mongodb://localhost:27017/shellTest',
-  local: process.env.MONGODB_URI || 'mongodb://localhost:27017/shell'
+  test: 'mongodb://localhost:27017/expresskun',
+  local: process.env.MONGODB_URI || 'mongodb://localhost:27017/expresskun',
 };
 
 const { ENV } = process.env;
@@ -13,9 +13,9 @@ const initDB = () => {
     uri,
     {
       useNewUrlParser: true,
-      useFindAndModify: false
+      useFindAndModify: false,
     },
-    err => {
+    (err) => {
       if (err) {
         console.log(err.message);
         throw new Error('Error Connecting to Database');
