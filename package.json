@@ -19,7 +19,7 @@
     "express-kun": "^1.0.14",
     "jest": "^25.1.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.0",
+    "mongoose": "^5.13.15",
     "redis": "^3.1.1",
     "swagger-jsdoc": "^3.5.0",
     "swagger-ui-express": "^4.1.3",
